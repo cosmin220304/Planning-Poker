@@ -7,14 +7,14 @@ import { UserContext } from './utils/UserContext'
 import './App.css'
 
 export default class App extends Component {
-    render() {
-        return (
-            <UserContext>
-                <Layout>
-                    <Route exact path='/' component={Home} />
-                    <Route path='/room/:roomId' component={Room} />
-                </Layout>
-            </UserContext>
-        )
-    }
+  render() {
+    return (
+      <UserContext>
+        <Layout>
+          <Route exact path='/' component={Home} />
+          <Route path='/room/:roomId' component={Room} />
+        </Layout>
+      </UserContext>
+    )
+  }
 }
