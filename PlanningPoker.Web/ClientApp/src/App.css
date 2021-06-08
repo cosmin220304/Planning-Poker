@@ -46,10 +46,30 @@ html {
     color: blue;
 }
 
-.old-rooms-container {
-  position: absolute;
-  bottom: 50%;
-  left: 10%;
+.user-list {
+  display: flex;
+  gap: 2rem;
+  flexWrap: wrap;
+} 
+
+.user-card {
+  width: 10rem;
+  height: 15rem;
   padding: 1rem 2rem 3rem 2rem;
+  margin: 0 0 0.5rem 0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: grid;
+  place-items: center;
+}
+
+.front {
+}
+
+.back {
+  background-image: url("./assets/card-back.jpg");
+}
+
+.text-link {
+  color: inherit;
+  text-decoration: inherit;
 }
