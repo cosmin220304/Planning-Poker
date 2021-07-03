@@ -1,8 +1,23 @@
-import React, { useEffect, useState } from 'react'
+﻿import React, { useEffect, useState } from 'react'
 import anime from 'animejs/lib/anime.es.js'
 
 export default function Card({ number, idx, maxIdx, isSelected, vote }) {
   const [animation, setAnimation] = useState()
+  const [symbol, setSymbol] = useState('🖤')
+  const [symbolColor, setSymbolColor] = useState('black')
+
+  const generageRandomSymbol = () => {
+    const symbols = '♠♣♥♦'
+    const idx = Math.round(Math.random() * (symbols.length - 1))
+    setSymbol(symbols[idx])
+
+    const color = Math.random() < 0.5 ? 'black' : 'red'
+    setSymbolColor(color)
+  }
+
+  useEffect(() => {
+    generageRandomSymbol()
+  }, [])
 
   useEffect(() => {
     const anim = anime({
@@ -40,7 +55,9 @@ export default function Card({ number, idx, maxIdx, isSelected, vote }) {
       onMouseLeave={handleMouseLave}
       onClick={handleClick}
     >
-      {number || '???'}
+      <div className={`symbol-top ${symbolColor}`}> {symbol} </div>
+      <div className={`symbol-down ${symbolColor}`}> {symbol} </div>
+      <b> {number || '???'} </b>
     </div>
   )
 }

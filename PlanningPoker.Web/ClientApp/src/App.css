@@ -86,6 +86,37 @@ html {
   place-items: center;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  position: relative;
+  user-select: none;
+}
+
+.symbol-top {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.5rem;
+}
+
+.symbol-down {
+  position: absolute;
+  bottom: 0.25rem;
+  right: 0.5rem;
+  transform: scale(-1, -1);
+}
+
+.symbol-top, .symbol-down { 
+  font-size: 2rem;
+}
+
+.black {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+.user-card.back > .symbol-top, .user-card.back > .symbol-down {
+  display: none;
 }
 
 .front {
