@@ -40,7 +40,7 @@ export default function Card({ number, idx, maxIdx, isSelected, vote }) {
       onMouseLeave={handleMouseLave}
       onClick={handleClick}
     >
-      {number}
+      {number || '???'}
     </div>
   )
 }

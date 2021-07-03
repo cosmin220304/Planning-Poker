@@ -30,7 +30,6 @@ export default function RoomDetails({ roomName, users, showResults }) {
       setAgreementEmoji()
     }
     else {
-      console.log("test");
       (async function () {
         await new Promise(res => setTimeout(res, 3100))
         computeAverage()
@@ -46,8 +45,8 @@ export default function RoomDetails({ roomName, users, showResults }) {
   }
 
   const computeAgreement = () => {
-    const storyPointsScores = [users[0].cardValue]
-    let differentVotes = 0
+    const storyPointsScores = []
+    let differentVotes = -1
 
     for (let _user of users) {
       const sp = _user.cardValue
@@ -77,7 +76,7 @@ export default function RoomDetails({ roomName, users, showResults }) {
   return (
     <>
       <Tooltip placement='right' isOpen={tooltipOpen} target='invite-people' > Copied to clipboard! </Tooltip>
-      <div className='mb-4 d-flex align-items-center justify-content-space-between'>
+      <div className='room-details  '>
 
         <div className='d-flex flex-column align-items-center '>
           <div> Room name: </div>

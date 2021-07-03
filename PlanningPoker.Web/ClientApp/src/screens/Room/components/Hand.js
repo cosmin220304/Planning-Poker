@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+﻿import React, { useEffect, useState, useContext } from 'react'
 import { UseUserContext } from '../../../utils/UserContext'
 import { Button } from 'reactstrap'
 import Card from './Card'
@@ -10,7 +10,7 @@ export default function Hand({ showResults }) {
   const [votedCard, setVotedCard] = useState()
   const [user,] = useContext(UseUserContext)
   const [counter, setCounter] = useState()
-  const fibbonaci = [1, 2, 3, 5, 8, 13]
+  const fibbonaci = [null, 1, 2, 3, 5, 8, 13, 21]
 
   useEffect(() => {
     if (counter === 0) setCounter(null)
@@ -47,7 +47,7 @@ export default function Hand({ showResults }) {
       return
     }
     setVotedCard(number)
-    axios.post(`api/Room/Vote?userId=${user.id}&cardValue=${number}`)
+    axios.post(`api/Room/Vote?userId=${user.id}&cardValue=${number || -1}`)
   }
 
   return (
@@ -58,6 +58,9 @@ export default function Hand({ showResults }) {
         <Button color='primary' onClick={toggleShowResults} disabled={!!counter}> Show results </Button>
       </div>}
 
+      {!counter && !showResults && <h3> Choose your card! </h3>}
+      {!counter && showResults && <h3> Discuss! </h3>}
+
       {showResults && <div className='restart-button'>
         <Button color='primary' onClick={toggleShowResults} disabled={!!counter}> Restart </Button>
       </div>}
@@ -65,7 +68,7 @@ export default function Hand({ showResults }) {
       <div className='hand-cards'>
         {
           fibbonaci.map((fibboNumber, idx) => {
-            const isSelected = votedCard === fibboNumber ? true : false
+            let isSelected = votedCard === fibboNumber ? true : false
             return <Card number={fibboNumber} idx={idx} maxIdx={fibbonaci.length} key={`fibo-${idx}`} isSelected={isSelected} vote={vote} />
           })
         }

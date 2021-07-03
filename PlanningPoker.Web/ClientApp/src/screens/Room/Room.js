@@ -42,10 +42,12 @@ export default function Hone() {
   }
 
   return (
-    <div>
-      <RoomDetails roomName={roomName} users={users} showResults={showResults} />
+    <>
+    <RoomDetails roomName={roomName} users={users} showResults={showResults} />
+    <div className='room'>
       <Users users={users} showResults={showResults} />
       <Hand showResults={showResults}/>
     </div>
+    </>
   )
 }

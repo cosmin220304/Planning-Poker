@@ -46,10 +46,34 @@ html {
     color: blue;
 }
 
+.room {
+  display: grid;
+  place-items: center;
+}
+
+.room-details {
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 800px) {
+  .room-details {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .room-details > * {
+    display: grid;
+    place-items: center;
+  }
+}
+
 .user-list {
   display: flex;
   gap: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
 }
 
 .user-card {
@@ -86,6 +110,9 @@ html {
 .hand-cards {
   display: flex;
   margin-left: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .hand-card {

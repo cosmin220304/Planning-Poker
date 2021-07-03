@@ -97,12 +97,12 @@ namespace PlanningPoker.Web.Controllers
     }
 
     [HttpPost("[action]")]
-    public IActionResult Vote(string userId, int cardValue)
+    public IActionResult Vote(string userId, int? cardValue)
     {
       var user = userRepository.Find(userId);
       if (user is null) return NotFound();
 
-      //todo check if fibo
+      if (cardValue < 0) cardValue = null;
       user.CardValue = cardValue;
       userRepository.Update(user);
       return Ok();
