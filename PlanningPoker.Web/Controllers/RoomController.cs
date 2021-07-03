@@ -91,7 +91,7 @@ namespace PlanningPoker.Web.Controllers
       var room = roomRepository.Find(roomId);
       if (room.UserIds is null || !room.UserIds.First().Equals(userId)) return Forbid("You are not the owner of room");
 
-      room.ShowResults = true;
+      room.ShowResults = !room.ShowResults;
       roomRepository.Update(room);
       return Ok();
     }

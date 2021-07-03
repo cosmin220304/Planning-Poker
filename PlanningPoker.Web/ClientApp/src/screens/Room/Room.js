@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useHistory, useParams, useLocation } from 'react-router-dom'
-import { UseUserContext } from '../utils/UserContext'
-import RoomDetails from '../components/RoomDetails'
-import UserList from '../components/UserList'
+import { UseUserContext } from '../../utils/UserContext'
+import RoomDetails from './components/RoomDetails'
+import Users from './components/Users'
+import Hand from './components/Hand'
 import axios from 'axios'
 
 export default function Hone() {
@@ -12,7 +13,8 @@ export default function Hone() {
 
   const [user,] = useContext(UseUserContext)
   const [users, setUsers] = useState([])
-  const [info, setInfo] = useState([])
+  const [showResults, setShowResults] = useState(false)
+  const [roomName, setRoomName] = useState()
 
   useEffect(() => {
     updateRoom()
@@ -28,10 +30,9 @@ export default function Hone() {
       try {
         const { data } = await axios.get(`/api/Room?id=${roomId}`)
         setUsers(data.users)
-        setInfo(data)
-        //console.log(data)
-        await new Promise(r => setTimeout(r, 200));
-        break;
+        setRoomName(data.name)
+        setShowResults(data.showResults)
+        await new Promise(r => setTimeout(r, 200))
       }
       catch (err) {
         console.log(err)
@@ -42,8 +43,9 @@ export default function Hone() {
 
   return (
     <div>
-      <RoomDetails info={info} />
-      <UserList users={users} />
+      <RoomDetails roomName={roomName} users={users} showResults={showResults} />
+      <Users users={users} showResults={showResults} />
+      <Hand showResults={showResults}/>
     </div>
   )
 }

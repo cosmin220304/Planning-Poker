@@ -1,9 +1,8 @@
 ﻿import React, { useEffect, useState } from 'react'
 import anime from 'animejs/lib/anime.es.js';
 
-
-export default function User({ username, cardNumber, isLeader }) {
-  const [facingDireciton, setFacingDireciton] = useState(!cardNumber ? 'back' : 'front')
+export default function User({ username, cardNumber, isLeader, showResults }) {
+  const [facingDireciton, setFacingDireciton] = useState(!showResults ? 'back' : 'front')
   const [animation, setAnimation] = useState()
 
   useEffect(() => {
@@ -12,21 +11,28 @@ export default function User({ username, cardNumber, isLeader }) {
       rotateY: 180,
       delay: 3000,
       loop: false,
-      complete: (anime) => {
-        setFacingDireciton('front')
-      }
+      autoplay: false,
     })
-
     setAnimation(anim)
   }, [])
 
-
   useEffect(() => {
-    if (facingDireciton === 'front' && animation) {
+    if (animation && showResults) {
       animation.seek(0)
+      animation.play()
     }
-  }, [facingDireciton, animation])
 
+    if (!showResults) {
+      setFacingDireciton('back') 
+    }
+    else {
+      (async function () {
+        await new Promise(res => setTimeout(res, 3100))
+        setFacingDireciton('front')
+      })()
+    }
+  }, [showResults, animation])
+   
   return (
     <div>
 
@@ -35,7 +41,7 @@ export default function User({ username, cardNumber, isLeader }) {
       </div>
 
       <div className='text-center'>
-        {username} {isLeader ? '👑' : '' }
+        {username} {isLeader ? '👑' : ''}
       </div>
 
     </div>

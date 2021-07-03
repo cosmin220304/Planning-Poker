@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import Home from './screens/Home';
-import Room from './screens/Room';
+import React, { Component } from 'react'
+import { Route } from 'react-router'
+import { Layout } from './components/Layout'
+import Home from './screens/Home'
+import Room from './screens/Room'
 import { UserContext } from './utils/UserContext'
 import './App.css'
 

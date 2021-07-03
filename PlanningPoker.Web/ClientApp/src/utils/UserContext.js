@@ -7,7 +7,7 @@ function UserContext({ children }) {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    const _init_user = async () => {
+    (async () => {
       let savedUserId = await localStorage.getItem('saved-user-id');
       let savedUser = null;
 
@@ -17,12 +17,13 @@ function UserContext({ children }) {
       }
 
       if (!savedUser) {
-        const { data } = await axios.post(`/api/User/Create`, { Username: 'Guest' }) 
-        savedUser = data
+        const { data } = await axios.post(`/api/User/Create`, { Username: 'Guest' })
+        savedUser = {
+          id: data
+        }
       }
       setUser(savedUser)
-    }
-    _init_user()
+    })()
   }, [])
 
   useEffect(() => {

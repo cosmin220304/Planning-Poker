@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { useHistory } from 'react-router-dom';
-import { UseUserContext } from '../utils/UserContext'
+import { UseUserContext } from '../../utils/UserContext'
 import axios from 'axios'
-import OldRooms from '../components/OldRooms';
+import OldRooms from './components/OldRooms';
 
 export default function Hone() {
   let history = useHistory();
@@ -24,7 +24,7 @@ export default function Hone() {
   return (
     <div className='d-flex align-items-center flex-column mt-4'>
 
-      <h1> { user ? `Hi ${user.username},` : 'Loading...' } </h1>
+      <h1> {user ? `Hi ${user.username ?? 'guest'},` : 'Loading...'} </h1>
 
       <Button color='primary' onClick={toggle}>
         Create Room
